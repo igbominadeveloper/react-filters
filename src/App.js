@@ -9,10 +9,10 @@ export default function App() {
   // build out the options for the filters
   // KPI Perpective
   const filters = [
-    { title: "KPI Perspective", name: "perspective" },
-    { title: "KPI Data Source", name: "data-source" },
-    { title: "KPI Data Type", name: "data-type" },
-    { title: "Date Uploaded", name: "dateUploaded" }
+    { title: "KPI Perspective", name: "kpiPerspective" },
+    { title: "KPI Target Type", name: "kpiTargetType" },
+    { title: "Date Uploaded", name: "dateUploaded" },
+    { title: "KPI Weight", name: "weight" }
   ];
 
   return (

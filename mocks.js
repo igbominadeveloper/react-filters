@@ -4,7 +4,8 @@ export const mocks = [
     kpiObjective: "At least 95% engaged staff Teller",
     kpiPerspective: "Learning and growth or innovation perspective",
     staffId: "UBA002",
-    kpiWeight: "0.05"
+    kpiWeight: "0.05",
+    createdAt: Date.now().toString()
   },
   {
     kpiName: "Process Improvement - Audit",
@@ -12,7 +13,8 @@ export const mocks = [
       "Reduce all process steps by 50%; Reduce paper-based processes by 90%",
     kpiPerspective: "Internal process perspective",
     staffId: "AD5855",
-    kpiWeight: "0.05"
+    kpiWeight: "0.05",
+    createdAt: Date.now().toString()
   },
   {
     kpiName: "Financial losses due to Regulatory Infractions",
@@ -20,7 +22,8 @@ export const mocks = [
       "Minimize financial losses due to penalties for regulatory breaches and infractions - NGA",
     kpiPerspective: "Learning and growth or innovation perspective",
     staffId: "AD7867",
-    kpiWeight: "0.1"
+    kpiWeight: "0.1",
+    createdAt: Date.now().toString()
   },
   {
     kpiName: "Financial losses due to Regulatory Infractions",
@@ -28,7 +31,8 @@ export const mocks = [
       "Minimize financial losses due to penalties for regulatory breaches and infractions - NGA",
     kpiPerspective: "Learning and growth or innovation perspective",
     staffId: "AD7867",
-    kpiWeight: "0.1"
+    kpiWeight: "0.1",
+    createdAt: Date.now().toString()
   },
   {
     kpiName: "Financial losses due to Regulatory Infractions",
@@ -36,7 +40,8 @@ export const mocks = [
       "Minimize financial losses due to penalties for regulatory breaches and infractions - NGA",
     kpiPerspective: "Learning and growth or innovation perspective",
     staffId: "AD7867",
-    kpiWeight: "0.1"
+    kpiWeight: "0.1",
+    createdAt: Date.now().toString()
   },
   {
     kpiName: "Financial losses due to Regulatory Infractions",
@@ -44,7 +49,8 @@ export const mocks = [
       "Minimize financial losses due to penalties for regulatory breaches and infractions - NGA",
     kpiPerspective: "Learning and growth or innovation perspective",
     staffId: "AD7867",
-    kpiWeight: "0.1"
+    kpiWeight: "0.1",
+    createdAt: Date.now().toString()
   },
   {
     kpiName: "Financial losses due to Regulatory Infractions",
@@ -52,7 +58,8 @@ export const mocks = [
       "Minimize financial losses due to penalties for regulatory breaches and infractions - NGA",
     kpiPerspective: "Learning and growth or innovation perspective",
     staffId: "AD7867",
-    kpiWeight: "0.1"
+    kpiWeight: "0.1",
+    createdAt: Date.now().toString()
   },
   {
     kpiName: "Financial losses due to Regulatory Infractions",
@@ -60,7 +67,8 @@ export const mocks = [
       "Minimize financial losses due to penalties for regulatory breaches and infractions - NGA",
     kpiPerspective: "Learning and growth or innovation perspective",
     staffId: "AD7867",
-    kpiWeight: "0.1"
+    kpiWeight: "0.1",
+    createdAt: Date.now().toString()
   },
   {
     kpiName: "Financial losses due to Regulatory Infractions",
@@ -68,7 +76,8 @@ export const mocks = [
       "Minimize financial losses due to penalties for regulatory breaches and infractions - NGA",
     kpiPerspective: "Learning and growth or innovation perspective",
     staffId: "AD7867",
-    kpiWeight: "0.1"
+    kpiWeight: "0.1",
+    createdAt: Date.now().toString()
   },
   {
     kpiName: "Financial losses due to Regulatory Infractions",
@@ -76,6 +85,7 @@ export const mocks = [
       "Minimize financial losses due to penalties for regulatory breaches and infractions - NGA",
     kpiPerspective: "Learning and growth or innovation perspective",
     staffId: "AD7867",
-    kpiWeight: "0.1"
+    kpiWeight: "0.1",
+    createdAt: Date.now().toString()
   }
 ];

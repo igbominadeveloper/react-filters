@@ -1,63 +1,148 @@
-import React, { useState } from 'react';
-import { Checkbox, Menu, Dropdown } from 'semantic-ui-react';
+import React, { useState } from "react";
+import { Checkbox, Menu, Dropdown, Input } from "semantic-ui-react";
+import { DateInput } from "semantic-ui-calendar-react";
 
-import { mocks } from '../mocks';
+import { mocks } from "../mocks";
 
-const options = {
-  'perspective': [
-    { key: 1, text: "Choice 1", value: 1 },
-    { key: 2, text: "Choice 2", value: 2 },
-    { key: 3, text: "Choice 3", value: 3 }
-  ],
-  'data-source': [
-    { key: 1, text: "Choice 1", value: 1 },
-    { key: 2, text: "Choice 2", value: 2 },
-    { key: 3, text: "Choice 3", value: 3 }
-  ],
-  'data-type': [
-    { key: 1, text: "Choice 1", value: 1 },
-    { key: 2, text: "Choice 2", value: 2 },
-    { key: 3, text: "Choice 3", value: 3 }
-  ],
-  'dateUploaded': [
-    { key: 1, text: "Choice 1", value: 1 },
-    { key: 2, text: "Choice 2", value: 2 },
-    { key: 3, text: "Choice 3", value: 3 }
-  ]
-}
+const generateTemplate = originalArray =>
+  originalArray.map(item => ({
+    key: Math.random(),
+    text: item,
+    value: item
+  }));
 
-  const Filter = props => {
+const perspectives = generateTemplate([
+  ...new Set(mocks.map(mock => mock.kpiPerspective))
+]);
 
+const targetTypes = generateTemplate([
+  "Date",
+  "Number",
+  "Text",
+  "Percentage",
+  "Day",
+  "Currency"
+]);
+
+const dropDownOptions = {
+  kpiPerspective: perspectives,
+  kpiTargetType: targetTypes
+};
+
+const Filter = props => {
   const [currentItem, setCurrentItem] = useState("");
-  
+  const [filters, setFilters] = useState({
+    date: {
+      startDate: "",
+      endDate: ""
+    },
+    kpiPerspective: "",
+    kpiWeight: "",
+    kpiTargetType: ""
+  });
+
+
   const handleChecked = (...args) => {
-    console.log(currentItem);
-    const { name, checked } = args[1];
-    if (checked && name !== currentItem) {
-      return setCurrentItem(name);
+    const [event, data, filter] = args;
+    if (data.checked) {
+      return setCurrentItem(filter);
     }
-    return setCurrentItem('');
+    return setCurrentItem("");
   };
 
-  const perspectives = mocks.map(mock => mock.kpiPerspective);
+  const handleDateChange = (...args) => {
+    const [event, data, filter] = args;
+    const newObj = {
+      ...filters,
+      date: {
+        ...filters.date,
+        [filter]: data.value
+      }
+    };
+    setFilters(newObj);
+  };
 
-    return (
+  const handleGeneralChange = (...args) => {
+    const [event, data, filter] = args;
+    const newObj = {
+      ...filters,
+      [filter]: data.value
+    };
+    console.log(newObj, 'before state update');
+    setFilters(newObj);
+  };
+
+  const showOptions = filter => {
+    switch (filter) {
+      case "weight":
+        return (
+          <Input
+            type="number"
+            value={filters[filter]}
+            onChange={(event, data) =>
+              handleGeneralChange(event, data, "kpiWeight")
+            }
+          />
+        );
+      case "dateUploaded":
+        return (
+          <>
+            <DateInput
+              onChange={(event, data) =>
+                handleDateChange(event, data, "startDate")
+              }
+              pickerWidth="100%"
+              name={"startDate"}
+              value={filters.date.startDate}
+              placeholder="Start date"
+              iconPosition="left"
+              dateFormat="YYYY-MM-DD"
+              style={{ width: "100%" }}
+            />
+            <DateInput
+              onChange={(event, data) =>
+                handleDateChange(event, data, "endDate")
+              }
+              pickerWidth="100%"
+              name={"endDate"}
+              value={filters.date.endDate}
+              placeholder="End date"
+              iconPosition="left"
+              dateFormat="YYYY-MM-DD"
+              style={{ width: "100%" }}
+            />
+          </>
+        );
+      default:
+        return (
+          <Dropdown
+            placeholder="Select option"
+            options={dropDownOptions[filter]}
+            selection
+            clearable
+            onChange={(event, data) => handleGeneralChange(event, data, filter)}
+            value={filters[filter]}
+          />
+        );
+    }
+  };
+
+  return (
     <li className="filter_item">
       <Checkbox
         className="item_check"
         label={{ children: props.title }}
-        onChange={(event, data) => handleChecked(event, data)}
-        name={props.name}
+        onChange={(event, data) => handleChecked(event, data, props.name)}
         checked={currentItem === props.name}
       />
       <Menu
         compact
-        style={{ display: currentItem !== props.name ? "none" : "block" }}
+        style={{ display: currentItem === props.name ? "block" : "none" }}
       >
-        <Dropdown text="Select option" options={options[props.name]} selection item />
+        {showOptions(props.name)}
       </Menu>
     </li>
   );
-}
+};
 
-  export default Filter;
+export default Filter;
