@@ -1,6 +1,6 @@
 import React from "react";
 
-import Filter from "./Filter";
+import Filters from "./Filters";
 
 import "./styles.scss";
 
@@ -19,9 +19,7 @@ export default function App() {
     <div className="App">
       <h3 className="filter_list_head">Filtering Options</h3>
       <ul className="filters_list">
-        {filters.map(filter => (
-          <Filter {...filter} key={filter.title} />
-        ))}
+        <Filters filters={filters} />
       </ul>
     </div>
   );
